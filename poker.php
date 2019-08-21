@@ -22,14 +22,6 @@
 </head>
 <body>
     <table>
-        <thead>
-            <?php
-            echo '<th>玩家</th>';
-            for ($i = 1; $i <= 13; ++$i) {
-                echo "<th>{$i}</th>";
-            }
-            ?>
-        </thead>
         <?php
         // 取得新牌
         for ($i = 0; $i < 52; ++$i) {
