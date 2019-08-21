@@ -38,6 +38,7 @@ function show($number)
     <style>
         table {
             width: 100%;
+            text-align: center;
         }
         table, td {
             border: 1px solid;
