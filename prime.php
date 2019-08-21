@@ -2,6 +2,7 @@
 $num = isset($_GET['num']) ? $_GET['num'] : '';
 function show($number)
 {
+    echo '<table>';
     for ($i = 2; $i <= $number; ++$i) {
         $k = 1;
         for ($j = 2; $j < $i; ++$j) {
@@ -25,6 +26,7 @@ function show($number)
             echo '</tr>';
         }
     }
+    echo '</table>';
 }
 ?>
 
@@ -59,12 +61,10 @@ function show($number)
         <button type="submit">送出</button>
     </form>
     <p></p>
-    <table>
     <?php
     if ($num != '') {
         show($num);
     }
     ?>
-    </table>
 </body>
 </html>
