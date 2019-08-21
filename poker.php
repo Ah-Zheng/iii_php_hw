@@ -1,3 +1,56 @@
+<?php
+// 取得新牌
+for ($i = 0; $i < 52; ++$i) {
+    $num[$i] = $i + 1;
+}
+
+// 洗牌
+for ($i = 0; $i < count($num); ++$i) {
+    $index = rand($i, 51);
+    $res[$i] = $num[$index];
+    $a = $num[$index];
+    $b = $num[$i];
+    $num[$i] = $a;
+    $num[$index] = $b;
+}
+
+// 發牌
+$players = [[], [], [], []];
+foreach ($num as $val => $card) {
+    $players[$val % 4][(int) ($val / 4)] = $card;
+}
+
+// 按花色排序
+for ($i = 0; $i < count($players); ++$i) {
+    sort($players[$i]);
+}
+
+// 秀出牌組
+function showPoker($data)
+{
+    $playerAr = ['玩家一', '玩家二', '玩家三', '玩家四'];
+    foreach ($data as $player => $nums) {
+        echo '<tr>';
+        echo "<td style='width: 15%'>$playerAr[$player]</td>";
+        foreach ($nums as $val) {
+            if ($val <= 13) {
+                echo "<td><img src='./img/spades.svg' />$val</td>";
+            } elseif ($val > 13 && $val <= 26) {
+                $val -= 13;
+                echo "<td><img src='./img/hearts.svg'/>$val</td>";
+            } elseif ($val > 26 && $val <= 39) {
+                $val -= 26;
+                echo "<td><img src='./img/diamond.svg'/>$val</td>";
+            } else {
+                $val -= 39;
+                echo "<td><img src='./img/clubs.svg'/>$val</td>";
+            }
+        }
+        echo '</tr>';
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,51 +74,10 @@
     </style>
 </head>
 <body>
+    <a href="https://jerry092383.nctu.me/iii_php_hw">首頁</a>
+    <hr>
     <table>
-        <?php
-        // 取得新牌
-        for ($i = 0; $i < 52; ++$i) {
-            $num[$i] = $i + 1;
-        }
-
-        // 洗牌
-        for ($i = 0; $i < count($num); ++$i) {
-            $index = rand($i, 51);
-            $res[$i] = $num[$index];
-            $a = $num[$index];
-            $b = $num[$i];
-            $num[$i] = $a;
-            $num[$index] = $b;
-        }
-
-        // 發牌
-        $players = [[], [], [], []];
-        foreach ($num as $val => $card) {
-            $players[$val % 4][(int) ($val / 4)] = $card;
-        }
-
-        // 秀出牌組
-        $playerAr = ['玩家一', '玩家二', '玩家三', '玩家四'];
-        foreach ($players as $player => $nums) {
-            echo '<tr>';
-            echo "<td style='width: 15%'>$playerAr[$player]</td>";
-            foreach ($nums as $val) {
-                if ($val <= 13) {
-                    echo "<td><img src='./img/spades.svg' />$val</td>";
-                } elseif ($val > 13 && $val <= 26) {
-                    $val -= 13;
-                    echo "<td><img src='./img/hearts.svg'/>$val</td>";
-                } elseif ($val > 26 && $val <= 39) {
-                    $val -= 26;
-                    echo "<td><img src='./img/diamond.svg'/>$val</td>";
-                } else {
-                    $val -= 39;
-                    echo "<td><img src='./img/clubs.svg'/>$val</td>";
-                }
-            }
-            echo '</tr>';
-        }
-        ?>
+        <?php showPoker($players); ?>
     </table>
 </body>
 </html>
