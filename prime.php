@@ -10,15 +10,18 @@ function show($number)
                 break;
             }
         }
-        if ($i % 10 == 2) {
+        if ($i % 10 == 1) {
             echo '<tr>';
         }
-        if ($k == 1) {
+        if ($i == 2) {
+            echo '<td>1</td>';
+        }
+        if ($k == 1 && $i != 1) {
             echo "<td class='bg-mine'>$i</td>";
         } else {
             echo "<td>$i</td>";
         }
-        if ($i % 10 == 1) {
+        if ($i % 10 == 0) {
             echo '</tr>';
         }
     }
