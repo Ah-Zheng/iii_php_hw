@@ -34,20 +34,41 @@ function showPoker($data)
         echo "<td style='width: 15%'>$playerAr[$player]</td>";
         foreach ($nums as $val) {
             if ($val <= 13) {
+                $val = change($val);
                 echo "<td><img src='./img/spades.svg' />$val</td>";
             } elseif ($val > 13 && $val <= 26) {
                 $val -= 13;
+                $val = change($val);
                 echo "<td><img src='./img/hearts.svg'/>$val</td>";
             } elseif ($val > 26 && $val <= 39) {
                 $val -= 26;
+                $val = change($val);
                 echo "<td><img src='./img/diamond.svg'/>$val</td>";
             } else {
                 $val -= 39;
+                $val = change($val);
                 echo "<td><img src='./img/clubs.svg'/>$val</td>";
             }
         }
         echo '</tr>';
     }
+}
+
+function change($val)
+{
+    if ($val >= 11 && $val <= 13 || $val == 1) {
+        if ($val == 11) {
+            $val = 'J';
+        } elseif ($val == 12) {
+            $val = 'Q';
+        } elseif ($val == 13) {
+            $val = 'K';
+        } elseif ($val == 1) {
+            $val = 'A';
+        }
+    }
+
+    return $val;
 }
 ?>
 
