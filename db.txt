@@ -1,0 +1,44 @@
+# drop 
+drop database iii;
+
+# call
+call addCustomer('jerry', '0912345678', 'jerry092383@gmail.com', '台中市太平區');
+call addSupplier('阿正萬事屋', '0988270468', '台中市太平區');
+call addProduct('電腦', 'P001', 15000, '0988270468');
+call addOrderDetails('S001', 1, 'P001', 15000, 2);
+
+call updateCustomer(1, 'JerryHuang', '0988270468', 'jerry@gmail.com', '台中市霧峰區');
+call updateSupplier(1, 'my阿正萬事屋', '0932345678', '台中市霧峰區');
+call updateProduct('Z001', 'my電腦', 0);
+call updateOrderDetails('P001', 'Z001', 12000, 4);
+
+call deleteCustomer(1);
+call deleteSupplier(1);
+call deleteProduct('Z001');
+call deleteOrder('P001');
+call deleteOrderDetails('P001', 'Z001');
+
+call selectCustomer('e');
+call selectSupplier('0988');
+call selectProduct('OPPO');
+
+call selectOrderAll(1, 'P001');
+call selectOrderTotal(1, 'P001');
+
+# select
+select * from customers;
+select * from suppliers;
+select * from products;
+select * from orderdetails;
+select * from orders;
+
+
+
+
+
+
+
+mysql -u root -p
+mysql -u root -p < d:/XAMPP/htdocs/iii_php_hw/iii.sql
+
+Cannot add or update a child row: a foreign key constraint fails (`iii`.`orderdetails`, CONSTRAINT `orderdetails_ibfk_2` FOREIGN KEY (`productNumber`) REFERENCES `products` (`productNumber`))
